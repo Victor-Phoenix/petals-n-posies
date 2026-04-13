@@ -1,31 +1,44 @@
-import { useProduct } from "../context/ProductProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { categorySelect } from "../context/flowerSlice";
 
-function NavBar({ flowerCategories }) {
-  const { onFilter } = useProduct();
+// NavBar.jsx
+const categories = [
+  "Romance",
+  "Birthday",
+  "Congratulations",
+  "Get Well",
+  "Thank You",
+  "New Baby",
+  "Funeral",
+];
+function NavBar() {
+  const { selectedCategory } = useSelector((state) => state.flower);
+  const dispatch = useDispatch();
+
+  function handleFilter(category) {
+    dispatch(categorySelect(category));
+    navigate("/"); // Navigate to the home page after selecting a category
+  }
+  const navigate = useNavigate();
+
   return (
-    <nav className="dropdown">
-      <button className="dropbtn">Ocassions</button>
-      <div className="dropdown-content">
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            onFilter("all");
-          }}
-        >
-          All Flowers
-        </a>
-        {flowerCategories.map((category) => (
-          <a
-            key={category}
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onFilter(category);
-            }}
+    <nav className="relative group w-fit">
+      {/* 1. The Trigger Button */}
+      <button className="inline-flex w-full rounded bg-transparent border-none ">
+        Occasions
+      </button>
+
+      {/* 2. The Menu: 'hidden' by default, 'group-hover:block' shows it on hover */}
+      <div className="hidden group-hover:flex flex-col absolute left-0 bg-white border shadow-lg pt-2 w-48 z-50">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className="px-4 py-2 text-left hover:bg-gray-100 border-b"
+            onClick={() => handleFilter(cat === "All Flowers" ? "all" : cat)}
           >
-            {category}
-          </a>
+            {cat}
+          </button>
         ))}
       </div>
     </nav>

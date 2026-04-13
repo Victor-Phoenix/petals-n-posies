@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
-import { useProduct } from "../context/ProductProvider";
+import { useProduct } from "../context/flowerSlice";
 import Carousel from "../components/Carousel";
 
 function Homepage() {

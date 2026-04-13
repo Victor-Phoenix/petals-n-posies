@@ -1,12 +1,20 @@
 import { act, useEffect, useReducer, useState } from "react";
-import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loading,
+  loadFlower,
+  categorySelect,
+  stopLoading,
+  rejected,
+  flowerSelect,
+} from "./context/flowerSlice";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./page/AppLayout";
+import ProductPage from "./page/ProductPage";
 import ProductList from "./components/ProductList";
-import NavBar from "./components/NavBar";
-import { ProductProvider } from "./context/ProductProvider";
-import Homepage from "./page/Homepage";
 import About from "./page/About";
 import WeddingsAndEvents from "./page/WeddingsAndEvents";
-import ProductPage from "./page/ProductPage";
+import Cart from "./features/cart/cart";
 
 const flowerCategories = [
   "Romance",
@@ -17,33 +25,25 @@ const flowerCategories = [
   "New Baby",
   "Funeral",
 ];
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      { index: true, element: <ProductList /> },
+      { path: "product/:id", element: <ProductPage /> },
+      { path: "about", element: <About /> },
+      { path: "weddings-events", element: <WeddingsAndEvents /> },
+      {
+        path: "checkout",
+        element: <Cart />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <ProductProvider>
-      <BrowserRouter>
-        <header className="header">
-          <NavLink to="/">Home</NavLink>
-          <NavBar flowerCategories={flowerCategories} />
-          <NavLink to="/weddings-and-events">Weddings & Events</NavLink>
-          <NavLink to="/about">About</NavLink>
-        </header>
-        <main>
-          <Routes>
-            <Route index element={<Homepage />} />
-            <Route path="about" element={<About />} />
-            <Route path="weddings-and-events" element={<WeddingsAndEvents />} />
-            <Route path="product/:id" element={<ProductPage />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </ProductProvider>
-  );
+  return <RouterProvider router={router} />;
 }
-{
-  /* <div>
- 
-  <ProductList flowerList={filteredFlower} />
-</div>; */
-}
+
 export default App;

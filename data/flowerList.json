@@ -5,12 +5,17 @@
       "price": 80.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "12 Roses" },
+        {
+          "type": "Standard",
+          "priceAdd": 0,
+          "description": "12 Roses the standard amount of roses"
+        },
         {
           "type": "Deluxe",
           "priceAdd": 20.0,
-          "description": "18 Roses + Vase"
+          "description": "18 Roses + Vase Lorem And they're greatly priced. The roses are centered "
         },
+
         {
           "type": "Premium",
           "priceAdd": 45.0,
