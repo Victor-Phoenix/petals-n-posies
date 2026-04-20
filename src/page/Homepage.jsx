@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
-import { useProduct } from "../context/flowerSlice";
 import Carousel from "../components/Carousel";
+import { useSelector } from "react-redux";
+import { categorySelect } from "../context/flowerSlice";
 
 function Homepage() {
-  const { flowerList, isLoading } = useProduct();
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const { selectedCategory } = useSelector((state) => state.flower);
 
   return (
     <>
-      <Carousel />
-      <ProductList flowerList={flowerList} />
+      {selectedCategory === "all" && <Carousel />}
+      <ProductList />
     </>
   );
 }

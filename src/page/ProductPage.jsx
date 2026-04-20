@@ -1,16 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { use, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { flowerSelect, getFlower } from "../context/flowerSlice";
+import { addToCart, setDeliveryDate } from "../features/cart/cartSlice";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 function ProductPage({ flowerList }) {
   const param = useParams();
 
   const { currentFlower, isLoading } = useSelector((state) => state.flower);
-
+  const deliveryDate = useSelector((state) => state.cart.deliveryDate);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(id);
   useEffect(
     function () {
       dispatch(getFlower(param.id));
@@ -25,42 +28,94 @@ function ProductPage({ flowerList }) {
   if (!currentFlower) {
     return <p>Loading Product Details..</p>;
   }
-  // console.log("description " + currentFlower?.variants[0].description);
-  // getFlower(id);
-  //   console.log(flowerList);
-  // const currentFlower = flowerList.find((item) => item.id === id);
-  // console.log(currentFlower);
+
+  function handleAddItem(currentFlower) {
+    const newItem = {
+      id: currentFlower.id,
+      name: currentFlower.name,
+      price:
+        currentFlower.price +
+        currentFlower?.variants?.[selectedIndex]?.priceAdd,
+      type: currentFlower?.variants?.[selectedIndex]?.type,
+      imageUrl: currentFlower.imageUrl,
+      quantity: 1,
+    };
+    dispatch(addToCart(newItem));
+  }
+
   return (
     <>
       <div className="product-container flex justify-center items-center ">
         <div className="w-1/3 shrink-0">
           <img className="w-full " src={currentFlower.imageUrl} />
         </div>
-        <div>
-          <div className="w-80 px-5">
-            {currentFlower?.variants?.map((type, index) => {
-              // console.log(type.type);
-              console.log("Variant details:", type.type);
-              return (
-                <button
-                  className="border hover:cursor-pointer mr-2"
-                  onClick={() => setSelectedIndex(index)}
+        <div className="border border-4 p-4 mx-4">
+          <div className="border border-2 border-red-500 p-4">
+            <div className="w-80 px-5">
+              <h3 className="font-bold text-2xl">{currentFlower.name}</h3>
+
+              {currentFlower?.variants?.map((type, index) => {
+                return (
+                  <button
+                    key={index}
+                    className="border hover:cursor-pointer mr-2"
+                    onClick={() => setSelectedIndex(index)}
+                  >
+                    {type.type}
+                  </button>
+                );
+              })}
+              <div className="mt-2 h-32">
+                <p>{currentFlower?.variants?.[selectedIndex]?.description}</p>
+
+                <p className="font-bold">
+                  Price: $
+                  {currentFlower.price +
+                    currentFlower?.variants?.[selectedIndex]?.priceAdd}
+                </p>
+                <span className="font-semibold">Delievery Date:</span>
+                <div
+                  className="
+                    flex items-center justify-between
+                    w-full
+                    rounded-md
+                    bg-white
+                    px-4 py-2
+                    shadow-sm
+                    ring-2 ring-gray-500
+                    hover:ring-amber-500 hover:shadow-md
+                    transition
+                    cursor-pointer
+                    my-1
+                  "
                 >
-                  {type.type}
-                </button>
-              );
-            })}
-            <div className="mt-4 h-32">
-              <p>{currentFlower?.variants?.[selectedIndex]?.description}</p>
-              <p className="font-bold">
-                Price: $
-                {currentFlower.price +
-                  currentFlower?.variants?.[selectedIndex]?.priceAdd}
-              </p>
+                  <span className="mr-2 text-gray-500 ">📅</span>
+                  <DatePicker
+                    className=" caret-transparent hover:cursor-pointer"
+                    selected={deliveryDate ? new Date(deliveryDate) : null}
+                    onChange={(date) =>
+                      dispatch(setDeliveryDate(date.toISOString()))
+                    }
+                    minDate={new Date()}
+                    filterDate={(d) => d.getDay() !== 0}
+                    dateFormat="MMMM d, YYYY"
+                    placeholderText="Please Select a Date"
+                    onClick={(e) => {
+                      e.target.focus();
+                    }}
+                    onChangeRaw={false}
+                    onKeyDown={(e) => e.preventDefault()}
+                  />
+                </div>
+              </div>
+
+              <button
+                className="inline-block border hover:cursor-pointer h-12 w-48"
+                onClick={() => handleAddItem(currentFlower)}
+              >
+                Add to Cart
+              </button>
             </div>
-            <button className="inline-block border hover:cursor-pointer h-12 w-48">
-              Add to Cart{" "}
-            </button>
           </div>
         </div>
       </div>

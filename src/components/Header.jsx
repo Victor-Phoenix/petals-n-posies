@@ -9,17 +9,16 @@ function Header() {
   const { flowerList, currentFlower, isLoading, selectedCategory, error } =
     useSelector((state) => state.flower);
 
- 
-
   return (
-    <header className=" bg-amber-100 header flex items-center justify-between   p-4">
+    <header className=" bg-amber-100 header flex items-center justify-between   p-4 mb-2">
       <div className="flex w-40 shrink-0">
         <Link to="/" onClick={() => dispatch(categorySelect("all"))}>
-          <img
+          HOMEPAGE{" "}
+          {/* <img
             src="src\assets\imgs\Logo.svg"
             alt="Petals & Posies Logo"
             className="h-10 "
-          />
+          /> */}
         </Link>
       </div>
       <nav className="flex gap-8 justify-center ">

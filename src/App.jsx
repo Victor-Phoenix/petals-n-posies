@@ -8,14 +8,20 @@ import {
   rejected,
   flowerSelect,
 } from "./context/flowerSlice";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
 import AppLayout from "./page/AppLayout";
 import ProductPage from "./page/ProductPage";
 import ProductList from "./components/ProductList";
 import About from "./page/About";
 import WeddingsAndEvents from "./page/WeddingsAndEvents";
-import Cart from "./features/cart/cart";
-
+import Cart from "./page/Cart";
+import Homepage from "./page/Homepage";
+import OrderForm from "./features/Order/OrderForm";
+import Checkout from "./features/Order/Checkout";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -30,15 +36,21 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     children: [
-      { index: true, element: <ProductList /> },
+      // Index means that this is the default page when the URL path is default
+      { index: true, element: <Homepage /> },
       { path: "product/:id", element: <ProductPage /> },
       { path: "about", element: <About /> },
       { path: "weddings-events", element: <WeddingsAndEvents /> },
-      {
-        path: "checkout",
-        element: <Cart />,
-      },
     ],
+  },
+
+  {
+    path: "/NewOrder",
+    element: <OrderForm />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
 ]);
 
