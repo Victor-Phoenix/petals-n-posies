@@ -13,18 +13,19 @@ function AppLayout() {
 
   useEffect(
     function () {
-      async function fetchFlowers() {
+      async function fetchFlower() {
         try {
           dispatch(loading());
-          const res = await fetch(`http://localhost:9000/flowerList`);
+          const res = await fetch(`http://localhost:8080/flower/getAll`);
           const data = await res.json();
-          // console.log(data);
+          console.log(data);
           dispatch(loadFlower(data));
         } catch (err) {
-          dispatch(rejected(err));
+          console.log(err);
         }
       }
-      fetchFlowers();
+ 
+      fetchFlower();
     },
     [dispatch],
   );

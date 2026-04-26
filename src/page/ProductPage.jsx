@@ -14,6 +14,7 @@ function ProductPage({ flowerList }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(
     function () {
       dispatch(getFlower(param.id));
@@ -33,16 +34,15 @@ function ProductPage({ flowerList }) {
     const newItem = {
       id: currentFlower.id,
       name: currentFlower.name,
-      price:
-        currentFlower.price +
-        currentFlower?.variants?.[selectedIndex]?.priceAdd,
+      price: currentFlower?.variants?.[selectedIndex]?.price,
       type: currentFlower?.variants?.[selectedIndex]?.type,
       imageUrl: currentFlower.imageUrl,
       quantity: 1,
     };
+    if (!deliveryDate) return;
     dispatch(addToCart(newItem));
   }
-
+  console.log(currentFlower);
   return (
     <>
       <div className="product-container flex justify-center items-center ">
@@ -69,9 +69,7 @@ function ProductPage({ flowerList }) {
                 <p>{currentFlower?.variants?.[selectedIndex]?.description}</p>
 
                 <p className="font-bold">
-                  Price: $
-                  {currentFlower.price +
-                    currentFlower?.variants?.[selectedIndex]?.priceAdd}
+                  Price: ${currentFlower?.variants?.[selectedIndex]?.price}
                 </p>
                 <span className="font-semibold">Delievery Date:</span>
                 <div
@@ -98,12 +96,11 @@ function ProductPage({ flowerList }) {
                     }
                     minDate={new Date()}
                     filterDate={(d) => d.getDay() !== 0}
-                    dateFormat="MMMM d, YYYY"
+                    dateFormat="MMMM d, yyyy"
                     placeholderText="Please Select a Date"
                     onClick={(e) => {
                       e.target.focus();
                     }}
-                    onChangeRaw={false}
                     onKeyDown={(e) => e.preventDefault()}
                   />
                 </div>

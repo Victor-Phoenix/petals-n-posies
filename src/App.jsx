@@ -22,6 +22,7 @@ import Cart from "./page/Cart";
 import Homepage from "./page/Homepage";
 import OrderForm from "./features/Order/OrderForm";
 import Checkout from "./features/Order/Checkout";
+import Admin from "./page/Admin";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       { path: "product/:id", element: <ProductPage /> },
       { path: "about", element: <About /> },
       { path: "weddings-events", element: <WeddingsAndEvents /> },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
     ],
   },
 
@@ -49,8 +54,8 @@ const router = createBrowserRouter([
     element: <OrderForm />,
   },
   {
-    path: "/checkout",
-    element: <Checkout />,
+    path: "/Admin",
+    element: <Admin />,
   },
 ]);
 

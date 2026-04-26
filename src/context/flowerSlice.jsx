@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 const flowerCategories = [
   "Romance",
@@ -17,7 +17,13 @@ const initialState = {
   error: "",
 };
 
-const BASE_URL = "http://localhost:9000";
+// const BASE_URL = "http://localhost:9000";
+const BASE_URL = "http://localhost:8080";
+export const fetchFlowers = createAsyncThunk("flower/fetchAll", async () => {
+  const res = await fetch(`${BASE_URL}/flower/getAll`);
+  const data = await res.json();
+  return data;
+});
 
 const flowerSlice = createSlice({
   name: "flower",
@@ -45,14 +51,35 @@ const flowerSlice = createSlice({
       state.isLoading = false;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchFlowers.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = "";
+      })
+      .addCase(fetchFlowers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // console.log("FETCHING");
+
+        // console.log(action.payload);
+        state.flowerList = action.payload;
+      })
+      .addCase(fetchFlowers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export function getFlower(id) {
   return async function (dispatch) {
     try {
       dispatch(loading());
-      const res = await fetch(`${BASE_URL}/flowerList/${id}`);
+      const res = await fetch(`${BASE_URL}/flower/${id}`);
       const data = await res.json();
+      console.log("FETCHING");
+
+      console.log(data);
       dispatch(flowerSelect(data));
     } catch (err) {
       console.log(err);

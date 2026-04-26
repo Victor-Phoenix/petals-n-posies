@@ -1,79 +1,74 @@
 {
   "flowerList": [
-    {
-      "name": "Classic Red Roses",
-      "price": 80.0,
-      "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
-      "variants": [
-        {
-          "type": "Standard",
-          "priceAdd": 0,
-          "description": "12 Roses the standard amount of roses"
-        },
-        {
-          "type": "Deluxe",
-          "priceAdd": 20.0,
-          "description": "18 Roses + Vase Lorem And they're greatly priced. The roses are centered "
-        },
-
-        {
-          "type": "Premium",
-          "priceAdd": 45.0,
-          "description": "24 Roses + Chocolates"
-        }
-      ],
-      "SKU": "BQT-RED-RSE",
-      "description": "The ultimate symbol of passion and love.",
-      "id": "classic-red-roses",
-      "categories": ["Romance", "Birthday", "Congratulations"]
-    },
+      {
+        "name": "Classic Red Roses",
+        "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
+        "variants": [
+          {
+            "type": "Standard",
+            "price": 80.0,
+            "description": "12 Roses the standard amount of roses"
+          },
+          {
+            "type": "Deluxe",
+            "price": 100.0,
+            "description": "18 Roses + Vase Lorem And they're greatly priced. The roses are centered "
+          },
+          {
+            "type": "Premium",
+            "price": 125.0,
+            "description": "24 Roses + Chocolates"
+          }
+        ],
+        "SKU": "BQT-RED-RSE",
+        "description": "The ultimate symbol of passion and love.",
+        "id": "classic-red-roses",
+        "categories": ["Romance", "Birthday", "Congratulations"]
+      },
     {
       "name": "Sunny Morning Sunflowers",
-      "price": 55.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "5 Large Stems" },
+        { "type": "Standard", "price": 55.0, "description": "5 Large Stems" },
         {
           "type": "Deluxe",
-          "priceAdd": 15.0,
+          "price": 70.0,
           "description": "8 Stems + Burlap Wrap"
         }
       ],
       "SKU": "BQT-YLW-SUN",
       "description": "Brighten someone's day with these glowing blooms.",
       "id": "sunny-sunflowers",
-      "categories": ["Get Well", "Birthday", "Thank you"]
+      "categories": ["Get Well", "Birthday", "Thank You"]
     },
-    {
-      "name": "Peaceful White Lilies",
-      "price": 70.0,
-      "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
-      "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "6 Premium Stems" },
-        {
-          "type": "Deluxe",
-          "priceAdd": 25.0,
-          "description": "10 Stems + Ceramic Vase"
-        }
-      ],
-      "SKU": "BQT-WHT-LIL",
-      "description": "Elegant and serene, perfect for moments of reflection.",
-      "id": "white-lilies",
-      "categories": ["Funeral", "Get Well", "New Baby"]
-    },
+      {
+        "name": "Peaceful White Lilies",
+        "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
+        "variants": [
+          { "type": "Standard", "price": 70.0, "description": "6 Premium Stems" },
+          {
+            "type": "Deluxe",
+            "price": 95.0,
+            "description": "10 Stems + Ceramic Vase"
+          }
+        ],
+        "SKU": "BQT-WHT-LIL",
+        "description": "Elegant and serene, perfect for moments of reflection.",
+        "id": "white-lilies",
+        "categories": ["Funeral", "Get Well", "New Baby"]
+      },
     {
       "name": "Sweet Pastel Mix",
-      "price": 65.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 65.0,
           "description": "Mixed Seasonal Blooms"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 20.0,
+          "price": 85.0,
           "description": "Extra Blooms + Ribbon"
         }
       ],
@@ -84,59 +79,56 @@
     },
     {
       "name": "Golden Joy Daisies",
-      "price": 45.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 45.0,
           "description": "Field-fresh Daisies"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 10.0,
+          "price": 55.0,
           "description": "Double the Daisies"
         }
       ],
       "SKU": "BQT-WHT-DAY",
       "description": "Simple, cheerful, and full of loyal love.",
       "id": "joy-daisies",
-      "categories": ["Thank you", "Get Well", "Birthday"]
+      "categories": ["Thank You", "Get Well", "Birthday"]
     },
     {
       "name": "Midnight Orchid",
-      "price": 95.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 95.0,
           "description": "Single Stem Orchid"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 30.0,
+          "price": 125.0,
           "description": "Double Stem + Glass Pot"
         }
       ],
       "SKU": "BQT-PUR-ORC",
       "description": "Exotic and rare, for someone truly special.",
       "id": "midnight-orchid",
-      "categories": ["Romance", "Congratulations", "Thank you"]
+      "categories": ["Romance", "Congratulations", "Thank You"]
     },
     {
       "name": "Eternal Grace Wreath",
-      "price": 120.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 120.0,
           "description": "Traditional Wreath"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 40.0,
+          "price": 160.0,
           "description": "Extra Large with Custom Banner"
         }
       ],
@@ -147,26 +139,24 @@
     },
     {
       "name": "Spring Tulip Festival",
-      "price": 50.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "15 Mixed Tulips" },
-        { "type": "Deluxe", "priceAdd": 20.0, "description": "30 Mixed Tulips" }
+        { "type": "Standard", "price": 50.0, "description": "15 Mixed Tulips" },
+        { "type": "Deluxe", "price": 70.0, "description": "30 Mixed Tulips" }
       ],
       "SKU": "BQT-MIX-TUL",
       "description": "A burst of springtime color for any celebration.",
       "id": "tulip-festival",
-      "categories": ["Birthday", "Congratulations", "Thank you"]
+      "categories": ["Birthday", "Congratulations", "Thank You"]
     },
     {
       "name": "Blushing Peony Bouquet",
-      "price": 85.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "5 Peony Blooms" },
+        { "type": "Standard", "price": 85.0, "description": "5 Peony Blooms" },
         {
           "type": "Deluxe",
-          "priceAdd": 35.0,
+          "price": 120.0,
           "description": "10 Peony Blooms + Premium Wrap"
         }
       ],
@@ -177,55 +167,52 @@
     },
     {
       "name": "Citrus Punch Arrangement",
-      "price": 60.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 60.0,
           "description": "Orange & Yellow Mix"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 15.0,
+          "price": 75.0,
           "description": "Includes Scented Candle"
         }
       ],
       "SKU": "ARR-ORG-CTR",
       "description": "Zesty colors to boost mood and energy.",
       "id": "citrus-punch",
-      "categories": ["Get Well", "Congratulations", "Thank you"]
+      "categories": ["Get Well", "Congratulations", "Thank You"]
     },
     {
       "name": "Pure Heart Carnations",
-      "price": 40.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
-        { "type": "Standard", "priceAdd": 0, "description": "12 Carnations" },
+        { "type": "Standard", "price": 40.0, "description": "12 Carnations" },
         {
           "type": "Deluxe",
-          "priceAdd": 15.0,
+          "price": 55.0,
           "description": "24 Carnations + Greeting Card"
         }
       ],
       "SKU": "BQT-WHT-CAR",
       "description": "A classic choice for showing deep appreciation.",
       "id": "heart-carnations",
-      "categories": ["Thank you", "Funeral", "Congratulations"]
+      "categories": ["Thank You", "Funeral", "Congratulations"]
     },
     {
       "name": "Royal Lavender Garden",
-      "price": 75.0,
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
       "variants": [
         {
           "type": "Standard",
-          "priceAdd": 0,
+          "price": 75.0,
           "description": "Lavender & Silver Foliage"
         },
         {
           "type": "Deluxe",
-          "priceAdd": 20.0,
+          "price": 95.0,
           "description": "Added Dried Lavender Bundle"
         }
       ],

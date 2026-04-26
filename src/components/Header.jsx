@@ -10,8 +10,8 @@ function Header() {
     useSelector((state) => state.flower);
 
   return (
-    <header className=" bg-amber-100 header flex items-center justify-between   p-4 mb-2">
-      <div className="flex w-40 shrink-0">
+    <header className=" bg-amber-100 header flex items-center justify-between   border border-b-2 border-gray-200 p-4 mb-2">
+      <div className="flex w-40 shrink-0 ">
         <Link to="/" onClick={() => dispatch(categorySelect("all"))}>
           HOMEPAGE{" "}
           {/* <img
