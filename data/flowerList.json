@@ -1,30 +1,29 @@
 {
   "flowerList": [
-      {
-        "name": "Classic Red Roses",
-        "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
-        "variants": [
-          {
-            "type": "Standard",
-            "price": 80.0,
-            "description": "12 Roses the standard amount of roses"
-          },
-          {
-            "type": "Deluxe",
-            "price": 100.0,
-            "description": "18 Roses + Vase Lorem And they're greatly priced. The roses are centered "
-          },
-          {
-            "type": "Premium",
-            "price": 125.0,
-            "description": "24 Roses + Chocolates"
-          }
-        ],
-        "SKU": "BQT-RED-RSE",
-        "description": "The ultimate symbol of passion and love.",
-        "id": "classic-red-roses",
-        "categories": ["Romance", "Birthday", "Congratulations"]
-      },
+    {
+      "name": "Classic Red Roses",
+      "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
+      "variants": [
+        {
+          "type": "Standard",
+          "price": 80.0,
+          "description": "12 Roses the standard amount of roses"
+        },
+        {
+          "type": "Deluxe",
+          "price": 100.0,
+          "description": "18 Roses + Vase Lorem And they're greatly priced. The roses are centered "
+        },
+        {
+          "type": "Premium",
+          "price": 125.0,
+          "description": "24 Roses + Chocolates"
+        }
+      ],
+      "SKU": "BQT-RED-RSE",
+      "id": "classic-red-roses",
+      "categories": ["Romance", "Birthday", "Congratulations"]
+    },
     {
       "name": "Sunny Morning Sunflowers",
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
@@ -37,26 +36,24 @@
         }
       ],
       "SKU": "BQT-YLW-SUN",
-      "description": "Brighten someone's day with these glowing blooms.",
       "id": "sunny-sunflowers",
       "categories": ["Get Well", "Birthday", "Thank You"]
     },
-      {
-        "name": "Peaceful White Lilies",
-        "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
-        "variants": [
-          { "type": "Standard", "price": 70.0, "description": "6 Premium Stems" },
-          {
-            "type": "Deluxe",
-            "price": 95.0,
-            "description": "10 Stems + Ceramic Vase"
-          }
-        ],
-        "SKU": "BQT-WHT-LIL",
-        "description": "Elegant and serene, perfect for moments of reflection.",
-        "id": "white-lilies",
-        "categories": ["Funeral", "Get Well", "New Baby"]
-      },
+    {
+      "name": "Peaceful White Lilies",
+      "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
+      "variants": [
+        { "type": "Standard", "price": 70.0, "description": "6 Premium Stems" },
+        {
+          "type": "Deluxe",
+          "price": 95.0,
+          "description": "10 Stems + Ceramic Vase"
+        }
+      ],
+      "SKU": "BQT-WHT-LIL",
+      "id": "white-lilies",
+      "categories": ["Funeral", "Get Well", "New Baby"]
+    },
     {
       "name": "Sweet Pastel Mix",
       "imageUrl": "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500&h=500&fit=crop",
@@ -73,7 +70,6 @@
         }
       ],
       "SKU": "BQT-PAS-MIX",
-      "description": "Gentle pinks and blues for life's newest arrivals.",
       "id": "pastel-mix",
       "categories": ["New Baby", "Birthday", "Congratulations"]
     },
@@ -93,7 +89,6 @@
         }
       ],
       "SKU": "BQT-WHT-DAY",
-      "description": "Simple, cheerful, and full of loyal love.",
       "id": "joy-daisies",
       "categories": ["Thank You", "Get Well", "Birthday"]
     },
@@ -113,7 +108,6 @@
         }
       ],
       "SKU": "BQT-PUR-ORC",
-      "description": "Exotic and rare, for someone truly special.",
       "id": "midnight-orchid",
       "categories": ["Romance", "Congratulations", "Thank You"]
     },
@@ -133,7 +127,6 @@
         }
       ],
       "SKU": "WRT-WHT-ETH",
-      "description": "A respectful tribute to a life well-lived.",
       "id": "grace-wreath",
       "categories": ["Funeral"]
     },
@@ -145,7 +138,6 @@
         { "type": "Deluxe", "price": 70.0, "description": "30 Mixed Tulips" }
       ],
       "SKU": "BQT-MIX-TUL",
-      "description": "A burst of springtime color for any celebration.",
       "id": "tulip-festival",
       "categories": ["Birthday", "Congratulations", "Thank You"]
     },
@@ -161,7 +153,6 @@
         }
       ],
       "SKU": "BQT-PNK-PEO",
-      "description": "Soft, fragrant, and incredibly romantic.",
       "id": "peony-bouquet",
       "categories": ["Romance", "New Baby", "Birthday"]
     },
@@ -181,7 +172,6 @@
         }
       ],
       "SKU": "ARR-ORG-CTR",
-      "description": "Zesty colors to boost mood and energy.",
       "id": "citrus-punch",
       "categories": ["Get Well", "Congratulations", "Thank You"]
     },
@@ -197,7 +187,6 @@
         }
       ],
       "SKU": "BQT-WHT-CAR",
-      "description": "A classic choice for showing deep appreciation.",
       "id": "heart-carnations",
       "categories": ["Thank You", "Funeral", "Congratulations"]
     },
@@ -217,7 +206,6 @@
         }
       ],
       "SKU": "ARR-LAV-ROY",
-      "description": "Calming scents and elegant purple hues.",
       "id": "lavender-garden",
       "categories": ["Get Well", "Birthday", "Romance"]
     }

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFlowers } from "../context/flowerSlice";
 const flowerCreate = {
-  name: "BUBBAS",
+  name: "",
   imageUrl: "",
   variants: [
     {
@@ -15,8 +16,12 @@ const flowerCreate = {
   categories: [],
 };
 
-function AddItemForm() {
-  const [flower, setFlower] = useState(flowerCreate);
+function AddItemForm({ onClose, initialData }) {
+  const dispatch = useDispatch();
+  const [flower, setFlower] = useState(
+    initialData ? initialData : flowerCreate,
+  );
+
   function handleUpdateBase(field, value) {
     setFlower({ ...flower, [field]: value });
   }
@@ -25,7 +30,6 @@ function AddItemForm() {
     const updatedVariant = flower.variants.map((variant, i) =>
       i === index ? { ...variant, [field]: value } : variant,
     );
-
     setFlower({ ...flower, variants: updatedVariant });
   }
 
@@ -37,26 +41,78 @@ function AddItemForm() {
     };
     setFlower({ ...flower, variants: [...flower.variants, newVariant] });
   }
-  // To add another/return a input field, think about how React needs to re-render to update the view. Maybe try adding another variant to flower
-  const takenTypes = flower.variants.map((v) => v.type);
+  // Look into how this works
+  const takenTypes = flower.variants.map((v) => v.type).filter((t) => t !== "");
 
-  async function saveItem() {
+  async function deleteItem() {
     try {
-      const res = await fetch("http://localhost:8080/flower/addFlower", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `http://localhost:8080/flower/delete/${flower?.id}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
         },
-        body: JSON.stringify(flower),
-      });
-      if (!res.ok) {
-        throw new Error("Failed to save new Flower");
-      }
-      const data = await res.json();
-      console.log("Saved:", data);
-      alert("Item saved!");
+      );
     } catch (err) {
       console.log(err);
+    }
+  }
+  async function saveItem() {
+    for (const v of flower.variants) {
+      if (v.type === "") {
+        alert("Please select a type for all variants.");
+        return;
+      }
+    }
+
+    const sortedFlower = {
+      ...flower,
+      variants: [...flower.variants].sort((a, b) => {
+        const order = ["Standard", "Deluxe", "Premium", ""];
+        return order.indexOf(a.type) - order.indexOf(b.type);
+      }),
+    };
+
+    if (flower?.id) {
+      try {
+        const res = await fetch("http://localhost:8080/flower/addFlower", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sortedFlower),
+        });
+        if (!res.ok) {
+          throw new Error("Failed to save new Flower");
+        }
+        const data = await res.json();
+        dispatch(fetchFlowers());
+        onClose();
+        alert("Item saved!");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (!flower?.id) {
+      try {
+        const res = await fetch("http://localhost:8080/flower/addFlower", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sortedFlower),
+        });
+        if (!res.ok) {
+          throw new Error("Failed to save new Flower");
+        }
+        const data = await res.json();
+        alert("Item saved!");
+        dispatch(fetchFlowers());
+        onClose();
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 
@@ -66,11 +122,19 @@ function AddItemForm() {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="bg-amber-200 rounded-lg p-8 w-full max-w-lg"
+        className="bg-amber-200 rounded-lg p-8 w-full max-w-lg relative"
       >
+        <button
+          type="button"
+          className="absolute top-2 right-2"
+          onClick={() => onClose()}
+        >
+          ❌
+        </button>
         <label className="flex items-center gap-1 mb-2">
           Product Name:
           <input
+            required
             className="border mt-1 "
             type="text"
             value={flower.name}
@@ -79,18 +143,11 @@ function AddItemForm() {
             }}
           />
         </label>
-        {/* <input
-          className="border"
-          type="number"
-          value={flower.price}
-          onChange={(e) => {
-            handleUpdateBase("price", e.target.value);
-          }}
-        /> */}
 
         <label className="flex items-center gap-1 mb-2">
           Image URL:
           <input
+            required
             className="border mt-1 "
             type="text"
             value={flower.imageUrl}
@@ -99,20 +156,22 @@ function AddItemForm() {
             }}
           />
         </label>
+
         <label className="flex items-center gap-1 mb-2">
-          Description:
+          SKU:
           <input
+            required
             className="border mt-1 "
             type="text"
-            value={flower.description}
+            value={flower.SKU}
             onChange={(e) => {
-              handleUpdateBase("description", e.target.value);
+              handleUpdateBase("SKU", e.target.value);
             }}
           />
         </label>
 
         {flower.variants.map((variant, index) => (
-          <div>
+          <div key={index}>
             <label>Type: </label>
             <select
               placeholder="im a placeholder"
@@ -121,6 +180,7 @@ function AddItemForm() {
                 handleVariantChange("type", e.target.value, index);
               }}
             >
+              <option value="">Select Type</option>
               <option
                 value="Standard"
                 disabled={
@@ -135,7 +195,7 @@ function AddItemForm() {
                   takenTypes.includes("Deluxe") && variant.type !== "Deluxe"
                 }
               >
-                Delux
+                Deluxe
               </option>
               <option
                 value="Premium"
@@ -148,6 +208,11 @@ function AddItemForm() {
             </select>
             <label>Price Add-on: </label>
             <input
+              required
+              type="number"
+              min={0}
+              max={9999}
+              step={0.01}
               placeholder="im a placeholder"
               value={variant.price}
               onChange={(e) => {
@@ -156,6 +221,7 @@ function AddItemForm() {
             />
             <label>Description: </label>
             <input
+              required
               placeholder="im a placeholder"
               value={variant.description}
               onChange={(e) => {
@@ -166,6 +232,7 @@ function AddItemForm() {
         ))}
         <div className="flex justify-between">
           <button
+            type="button"
             className="disabled: bg-red-400"
             onClick={() => addVariant()}
             disabled={flower.variants.length >= 3}
@@ -173,13 +240,14 @@ function AddItemForm() {
             ADD VARIANT
           </button>
           <button
+            type="button"
             className="disabled: bg-red-400"
             onClick={(e) => {
               e.preventDefault();
               saveItem();
             }}
           >
-            Save Item
+            SAVE
           </button>
         </div>
       </form>

@@ -6,6 +6,7 @@ import AddItemForm from "../components/AddItemForm";
 function Admin() {
   const { flowerList } = useSelector((state) => state.flower);
   const [showAddItem, setShowAddItem] = useState(false);
+  const [editFlower, setEditFlower] = useState(null);
   const dispatch = useDispatch();
 
   const [openForm, setOpenForm] = useState(false);
@@ -13,9 +14,45 @@ function Admin() {
     dispatch(fetchFlowers());
   }, [dispatch]);
 
+  function handleClose() {
+    setShowAddItem(false);
+    setEditFlower(null);
+  }
+
+  function handleEditFlower(flower) {
+    setEditFlower(flower);
+
+    setShowAddItem(true);
+  }
+
+  async function deleteItem(flower) {
+    try {
+      const res = await fetch(
+        `http://localhost:8080/flower/delete/${flower?.id}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      dispatch(fetchFlowers());
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    // console.log(editFlower);
+  });
+
   return (
     <>
-      {showAddItem && <AddItemForm className="flex" />}
+      {showAddItem && (
+        <AddItemForm
+          className="flex"
+          onClose={handleClose}
+          initialData={editFlower}
+        />
+      )}
       <div>
         {!showAddItem && (
           <button onClick={() => setShowAddItem(true)}>Add Item</button>
@@ -82,12 +119,30 @@ function Admin() {
                       );
                     })}
                   </td>
+                  <td className="align-middle">
+                    <button
+                      onClick={() => {
+                        handleEditFlower(flower);
+                      }}
+                    >
+                      Update
+                    </button>
+                    <button
+                      type="button"
+                      className="text-red-500 disabled: bg-red-400"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteItem(flower);
+                      }}
+                    >
+                      DELETE
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        
       </div>
     </>
   );
