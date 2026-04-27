@@ -42,7 +42,6 @@ function ProductPage({ flowerList }) {
     if (!deliveryDate) return;
     dispatch(addToCart(newItem));
   }
-  console.log(currentFlower);
   return (
     <>
       <div className="product-container flex justify-center items-center ">
@@ -65,7 +64,7 @@ function ProductPage({ flowerList }) {
                   </button>
                 );
               })}
-              <div className="mt-2 h-32">
+              <div className="mt-2">
                 <p>{currentFlower?.variants?.[selectedIndex]?.description}</p>
 
                 <p className="font-bold">
@@ -74,18 +73,18 @@ function ProductPage({ flowerList }) {
                 <span className="font-semibold">Delievery Date:</span>
                 <div
                   className="
-                    flex items-center justify-between
-                    w-full
-                    rounded-md
-                    bg-white
-                    px-4 py-2
-                    shadow-sm
-                    ring-2 ring-gray-500
-                    hover:ring-amber-500 hover:shadow-md
-                    transition
-                    cursor-pointer
-                    my-1
-                  "
+                      flex items-center justify-between
+                      w-full
+                      rounded-md
+                      bg-white
+                      px-4 py-2
+                      shadow-sm
+                      ring-2 ring-gray-500
+                      hover:ring-amber-500 hover:shadow-md
+                      transition
+                      cursor-pointer
+                      my-1
+                    "
                 >
                   <span className="mr-2 text-gray-500 ">📅</span>
                   <DatePicker
@@ -107,7 +106,7 @@ function ProductPage({ flowerList }) {
               </div>
 
               <button
-                className="inline-block border hover:cursor-pointer h-12 w-48"
+                className="inline-block border hover:cursor-pointer h-12 w-48 mt-2"
                 onClick={() => handleAddItem(currentFlower)}
               >
                 Add to Cart

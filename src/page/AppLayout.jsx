@@ -18,13 +18,12 @@ function AppLayout() {
           dispatch(loading());
           const res = await fetch(`http://localhost:8080/flower/getAll`);
           const data = await res.json();
-          console.log(data);
           dispatch(loadFlower(data));
         } catch (err) {
           console.log(err);
         }
       }
- 
+
       fetchFlower();
     },
     [dispatch],

@@ -25,6 +25,7 @@ export const fetchFlowers = createAsyncThunk("flower/fetchAll", async () => {
   return data;
 });
 
+// export const postFlower= createAsyncThunk
 const flowerSlice = createSlice({
   name: "flower",
   initialState,
@@ -77,9 +78,7 @@ export function getFlower(id) {
       dispatch(loading());
       const res = await fetch(`${BASE_URL}/flower/${id}`);
       const data = await res.json();
-      console.log("FETCHING");
 
-      console.log(data);
       dispatch(flowerSelect(data));
     } catch (err) {
       console.log(err);
