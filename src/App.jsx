@@ -18,11 +18,10 @@ import ProductPage from "./page/ProductPage";
 import ProductList from "./components/ProductList";
 import About from "./page/About";
 import WeddingsAndEvents from "./page/WeddingsAndEvents";
-import Cart from "./page/Cart";
 import Homepage from "./page/Homepage";
-import OrderForm from "./features/Order/OrderForm";
-import Checkout from "./features/Order/Checkout";
 import Admin from "./page/Admin";
+import Checkout from "./page/Checkout";
+import Cart from "./page/Cart";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -43,19 +42,18 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "weddings-events", element: <WeddingsAndEvents /> },
       {
-        path: "/checkout",
-        element: <Checkout />,
+        path: "cart",
+        element: <Cart />,
       },
     ],
-  },
-
-  {
-    path: "/NewOrder",
-    element: <OrderForm />,
   },
   {
     path: "/Admin",
     element: <Admin />,
+  },
+  {
+    path: "checkout",
+    element: <Checkout />,
   },
 ]);
 

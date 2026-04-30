@@ -13,7 +13,7 @@ function Header() {
     <header className=" bg-amber-100 header flex items-center justify-between   border border-b-2 border-gray-200 p-4 mb-2">
       <div className="flex w-40 shrink-0 ">
         <Link to="/" onClick={() => dispatch(categorySelect("all"))}>
-          HOMEPAGE{" "}
+          HOMEPAGE
           {/* <img
             src="src\assets\imgs\Logo.svg"
             alt="Petals & Posies Logo"
@@ -27,7 +27,7 @@ function Header() {
         <Link to="/about">About</Link>
       </nav>
       <div className="w-40 flex justify-end px-8">
-        <Link to="/checkout" className="px-8">
+        <Link to="cart" className="px-8">
           <ShoppingCart size={24} />
         </Link>
       </div>

@@ -1,4 +1,4 @@
-function OrderForm() {
+function Checkout() {
   return (
     <form className="mx-10 px-8">
       <fieldset className="bg-stone-100 rounded-lg border drop-shadow-md grid grid-cols-2 gap-6 p-6 mb-4 ">
@@ -72,4 +72,4 @@ function OrderForm() {
   );
 }
 
-export default OrderForm;
+export default Checkout;
