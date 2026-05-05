@@ -93,5 +93,6 @@ export const {
   stopLoading,
   rejected,
 } = flowerSlice.actions;
+export const categories = flowerCategories;
 
 export default flowerSlice.reducer;

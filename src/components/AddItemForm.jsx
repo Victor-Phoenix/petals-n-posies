@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFlowers } from "../context/flowerSlice";
+import { fetchFlowers, categories } from "../context/flowerSlice";
 const flowerCreate = {
   name: "",
   imageUrl: "",
@@ -11,7 +11,7 @@ const flowerCreate = {
       description: "",
     },
   ],
-  SKU: "",
+  sku: "",
   description: "",
   categories: [],
 };
@@ -21,6 +21,19 @@ function AddItemForm({ onClose, initialData }) {
   const [flower, setFlower] = useState(
     initialData ? initialData : flowerCreate,
   );
+
+  function toggleCategories(cat) {
+    const isSelected = flower.categories.includes(cat);
+    if (isSelected) {
+      setFlower({
+        ...flower,
+        categories: flower.categories.filter((c) => c !== cat),
+      });
+    } else {
+      setFlower({ ...flower, categories: [...flower.categories, cat] });
+    }
+    console.log(flower.categories);
+  }
 
   function handleUpdateBase(field, value) {
     setFlower({ ...flower, [field]: value });
@@ -41,22 +54,30 @@ function AddItemForm({ onClose, initialData }) {
     };
     setFlower({ ...flower, variants: [...flower.variants, newVariant] });
   }
+
+  function deleteVariant(position) {
+    const update = flower.variants.filter(
+      (element, index) => index !== position,
+    );
+    console.log(update);
+    setFlower({ ...flower, variants: update });
+  }
   // Look into how this works
   const takenTypes = flower.variants.map((v) => v.type).filter((t) => t !== "");
 
-  async function deleteItem() {
-    try {
-      const res = await fetch(
-        `http://localhost:8080/flower/delete/${flower?.id}`,
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function deleteItem() {
+  //   try {
+  //     const res = await fetch(
+  //       `http://localhost:8080/flower/delete/${flower?.id}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: { "Content-Type": "application/json" },
+  //       },
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
   async function saveItem() {
     for (const v of flower.variants) {
       if (v.type === "") {
@@ -64,6 +85,11 @@ function AddItemForm({ onClose, initialData }) {
         return;
       }
     }
+    console.log("FLOWER CATEGORY");
+
+    console.log(flower.categories);
+    console.log("FLOWER OBJECT");
+    console.log(flower);
 
     const sortedFlower = {
       ...flower,
@@ -72,7 +98,8 @@ function AddItemForm({ onClose, initialData }) {
         return order.indexOf(a.type) - order.indexOf(b.type);
       }),
     };
-
+    console.log("sortedFlower OBJECT");
+    console.log(sortedFlower);
     if (flower?.id) {
       try {
         const res = await fetch("http://localhost:8080/flower/addFlower", {
@@ -86,6 +113,10 @@ function AddItemForm({ onClose, initialData }) {
           throw new Error("Failed to save new Flower");
         }
         const data = await res.json();
+        console.log("DATA");
+
+        console.log(data);
+
         dispatch(fetchFlowers());
         onClose();
         alert("Item saved!");
@@ -106,7 +137,10 @@ function AddItemForm({ onClose, initialData }) {
         if (!res.ok) {
           throw new Error("Failed to save new Flower");
         }
+
         const data = await res.json();
+        console.log("DATA");
+        console.log(data);
         alert("Item saved!");
         dispatch(fetchFlowers());
         onClose();
@@ -143,7 +177,6 @@ function AddItemForm({ onClose, initialData }) {
             }}
           />
         </label>
-
         <label className="flex items-center gap-1 mb-2">
           Image URL:
           <input
@@ -156,22 +189,48 @@ function AddItemForm({ onClose, initialData }) {
             }}
           />
         </label>
-
         <label className="flex items-center gap-1 mb-2">
           SKU:
           <input
             required
             className="border mt-1 "
             type="text"
-            value={flower.SKU}
+            value={flower.sku}
             onChange={(e) => {
-              handleUpdateBase("SKU", e.target.value);
+              handleUpdateBase("sku", e.target.value);
             }}
           />
         </label>
+        <div>
+          {categories.map((element) => {
+            const isSelected = flower.categories.includes(element);
 
+            return (
+              <button
+                key={element}
+                type="button"
+                className={`rounded-full px-3 py-1 ${isSelected ? "bg-amber-500 text-white border-amber-600" : "bg-gray-200 text-gray-700 border-gray-300"}`}
+                onClick={(e) => {
+                  toggleCategories(element);
+                }}
+              >
+                {element}
+              </button>
+            );
+          })}
+        </div>
         {flower.variants.map((variant, index) => (
           <div key={index}>
+            {flower.variants.length > 1 && (
+              <button
+                type="button"
+                onClick={() => {
+                  deleteVariant(index);
+                }}
+              >
+                ❌
+              </button>
+            )}
             <label>Type: </label>
             <select
               placeholder="im a placeholder"

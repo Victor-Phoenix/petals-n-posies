@@ -13,10 +13,10 @@ function ProductList() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 ">
       <div className="grid grid-cols-4 gap-6 px-4">
-        {displayedFlowers.map((item) => {
+        {displayedFlowers.map((item, index) => {
           return (
             <div
-              key={item.id}
+              key={index}
               className="border rounded-lg overflow-hidden shadow-sm p-4"
             >
               <Link to={`/product/${item.id}`}>
@@ -34,7 +34,7 @@ function ProductList() {
                 </span>
                 <span>
                   <p className="text-gray-600">
-                    Price: {item.variants[0].price}
+                    Price: {item.variants?.[0]?.price ?? "N/A"}
                   </p>
                 </span>
               </div>

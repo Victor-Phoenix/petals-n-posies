@@ -22,6 +22,7 @@ import Homepage from "./page/Homepage";
 import Admin from "./page/Admin";
 import Checkout from "./page/Checkout";
 import Cart from "./page/Cart";
+import SuccesfulPayment from "./page/SuccesfulPayment";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
   {
     path: "checkout",
     element: <Checkout />,
+  },
+
+  {
+    path: "success",
+    element: <SuccesfulPayment />,
   },
 ]);
 
