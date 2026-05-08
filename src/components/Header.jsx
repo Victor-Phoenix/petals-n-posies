@@ -23,8 +23,12 @@ function Header() {
       </div>
       <nav className="flex gap-8 justify-center ">
         <NavBar />
-        <Link to="/weddings-events">Weddings & Events</Link>
-        <Link to="/about">About</Link>
+        <Link to="/weddings-events" className="text-xl ">
+          Weddings & Events
+        </Link>
+        <Link to="/about" className="text-xl">
+          About
+        </Link>
       </nav>
       <div className="w-40 flex justify-end px-8">
         <Link to="cart" className="px-8">

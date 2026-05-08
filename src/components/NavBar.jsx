@@ -25,7 +25,7 @@ function NavBar() {
   return (
     <nav className="relative group w-fit">
       {/* 1. The Trigger Button */}
-      <button className="inline-flex w-full rounded bg-transparent border-none ">
+      <button className="inline-flex w-full rounded bg-transparent border-none text-xl font- font-mono ">
         Occasions
       </button>
 

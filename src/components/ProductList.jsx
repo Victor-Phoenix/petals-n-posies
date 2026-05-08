@@ -17,7 +17,7 @@ function ProductList() {
           return (
             <div
               key={index}
-              className="border rounded-lg overflow-hidden shadow-sm p-4"
+              className="border rounded-lg overflow-hidden shadow-md p-4"
             >
               <Link to={`/product/${item.id}`}>
                 <div className="shrink-0 w-full ">

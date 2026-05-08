@@ -52,25 +52,26 @@ function ProductPage({ flowerList }) {
           <div className="border border-2 border-red-500 p-4">
             <div className="w-80 px-5">
               <h3 className="font-bold text-2xl">{currentFlower.name}</h3>
-
-              {currentFlower?.variants?.map((type, index) => {
-                return (
-                  <button
-                    key={index}
-                    className="border hover:cursor-pointer mr-2"
-                    onClick={() => setSelectedIndex(index)}
-                  >
-                    {type.type}
-                  </button>
-                );
-              })}
+              <div>
+                {currentFlower?.variants?.map((type, index) => {
+                  return (
+                    <button
+                      key={index}
+                      className={`border hover:cursor-pointer mr-2 px-2 ${selectedIndex === index ? "bg-amber-200 transition duration-500" : ""}`}
+                      onClick={() => setSelectedIndex(index)}
+                    >
+                      {type.type}
+                    </button>
+                  );
+                })}
+              </div>
               <div className="mt-2">
                 <p>{currentFlower?.variants?.[selectedIndex]?.description}</p>
 
                 <p className="font-bold">
                   Price: ${currentFlower?.variants?.[selectedIndex]?.price}
                 </p>
-                <span className="font-semibold">Delievery Date:</span>
+                <span className="font-semibold">Delivery Date:</span>
                 <div
                   className="
                       flex items-center justify-between
@@ -82,7 +83,6 @@ function ProductPage({ flowerList }) {
                       ring-2 ring-gray-500
                       hover:ring-amber-500 hover:shadow-md
                       transition
-                      cursor-pointer
                       my-1
                     "
                 >
@@ -106,7 +106,7 @@ function ProductPage({ flowerList }) {
               </div>
 
               <button
-                className="inline-block border hover:cursor-pointer h-12 w-48 mt-2"
+                className="inline-block border hover:cursor-pointer h-12 w-48 mt-2     hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] "
                 onClick={() => handleAddItem(currentFlower)}
               >
                 Add to Cart
