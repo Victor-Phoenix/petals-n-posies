@@ -23,6 +23,7 @@ import Admin from "./page/Admin";
 import Checkout from "./page/Checkout";
 import Cart from "./page/Cart";
 import SuccesfulPayment from "./page/SuccesfulPayment";
+import AdminOrder from "./page/AdminOrder";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/Admin",
     element: <Admin />,
+  },
+  {
+    path: "/AdminOrder",
+    element: <AdminOrder />,
   },
   {
     path: "checkout",
