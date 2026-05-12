@@ -44,9 +44,12 @@ function ProductPage({ flowerList }) {
   }
   return (
     <>
-      <div className="product-container flex justify-center items-center ">
+      <div className="product-container flex justify-center items-center mt-8 ">
         <div className="w-1/3 shrink-0">
-          <img className="w-full " src={currentFlower.imageUrl} />
+          <img
+            className="w-[128rem] h-96 object-cover"
+            src={currentFlower.variants?.[selectedIndex]?.imageUrl}
+          />
         </div>
         <div className="border border-4 p-4 mx-4">
           <div className="border border-2 border-red-500 p-4">

@@ -40,9 +40,14 @@ function AddItemForm({ onClose, initialData }) {
   }
 
   function handleVariantChange(field, value, index) {
+    console.log(`Field: ${field}`);
+    console.log(`Value: ${value}`);
+    console.log(`Index: ${index}`);
     const updatedVariant = flower.variants.map((variant, i) =>
       i === index ? { ...variant, [field]: value } : variant,
     );
+    console.log(`updatedVariant: ${updatedVariant}`);
+    console.log(`variant: ${flower.variants?.[0]?.imageUrl}`);
     setFlower({ ...flower, variants: updatedVariant });
   }
 
@@ -85,11 +90,6 @@ function AddItemForm({ onClose, initialData }) {
         return;
       }
     }
-    console.log("FLOWER CATEGORY");
-
-    console.log(flower.categories);
-    console.log("FLOWER OBJECT");
-    console.log(flower);
 
     const sortedFlower = {
       ...flower,
@@ -98,12 +98,11 @@ function AddItemForm({ onClose, initialData }) {
         return order.indexOf(a.type) - order.indexOf(b.type);
       }),
     };
-    console.log("sortedFlower OBJECT");
-    console.log(sortedFlower);
+
     if (flower?.id) {
       try {
-        const res = await fetch("http://localhost:8080/flower/addFlower", {
-          method: "POST",
+        const res = await fetch("http://localhost:8080/flower/update", {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
@@ -112,14 +111,10 @@ function AddItemForm({ onClose, initialData }) {
         if (!res.ok) {
           throw new Error("Failed to save new Flower");
         }
-        const data = await res.json();
-        console.log("DATA");
-
-        console.log(data);
 
         dispatch(fetchFlowers());
         onClose();
-        alert("Item saved!");
+        alert("Item updated !");
       } catch (err) {
         console.log(err);
       }
@@ -139,8 +134,7 @@ function AddItemForm({ onClose, initialData }) {
         }
 
         const data = await res.json();
-        console.log("DATA");
-        console.log(data);
+
         alert("Item saved!");
         dispatch(fetchFlowers());
         onClose();
@@ -177,18 +171,7 @@ function AddItemForm({ onClose, initialData }) {
             }}
           />
         </label>
-        <label className="flex items-center gap-1 mb-2">
-          Image URL:
-          <input
-            required
-            className="border mt-1 "
-            type="text"
-            value={flower.imageUrl}
-            onChange={(e) => {
-              handleUpdateBase("imageUrl", e.target.value);
-            }}
-          />
-        </label>
+
         <label className="flex items-center gap-1 mb-2">
           SKU:
           <input
@@ -278,6 +261,18 @@ function AddItemForm({ onClose, initialData }) {
                 handleVariantChange("price", e.target.value, index);
               }}
             />
+            <label className="flex items-center gap-1 mb-2">
+              Image URL:
+              <input
+                required
+                className="border mt-1 "
+                type="text"
+                value={variant.imageUrl}
+                onChange={(e) => {
+                  handleVariantChange("imageUrl", e.target.value, index);
+                }}
+              />
+            </label>
             <label>Description: </label>
             <input
               required

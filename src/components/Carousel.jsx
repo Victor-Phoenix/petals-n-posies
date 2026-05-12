@@ -25,8 +25,20 @@ function Carousel() {
   }, []);
 
   return (
-    <div className="mx-10 px-10 my-10 py-10">
-      <img src={bannerImages[currentImageIndex]} />
+    <div className=" relative mx-auto w-[90rem] h-[50rem] mt-8     ">
+      <img
+        src={bannerImages[currentImageIndex]}
+        className="  w-full h-full object-cover rounded-2xl"
+      />
+      <div className="inset-0 absolute bg-black/50 rounded-2xl"></div>
+      <div className="absolute bottom-20 right-12">
+        <button className="px-2 border-2 bg-yellow-50 rounded-md">
+          Book Event
+        </button>
+        <button className="text-s px-2 border-2 bg-amber-100  rounded-md">
+          Shop Now
+        </button>
+      </div>
     </div>
   );
 }

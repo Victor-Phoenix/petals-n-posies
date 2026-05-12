@@ -79,10 +79,14 @@ function Admin() {
                 >
                   <td className="p-3">{flower.name}</td>
                   <td className="p-3">
-                    <img
-                      src={flower.imageUrl}
-                      className="w-16 h-16 object-cover rounded"
-                    />
+                    {flower.variants.map((element) => {
+                      return (
+                        <img
+                          src={element?.imageUrl}
+                          className="w-16 h-16 object-cover rounded mb-2 border-gray-800 border-2"
+                        />
+                      );
+                    })}
                   </td>
 
                   <td className="p-3 ">

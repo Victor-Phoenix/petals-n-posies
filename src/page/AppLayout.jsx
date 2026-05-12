@@ -30,10 +30,10 @@ function AppLayout() {
   );
 
   return (
-    <>
+    <div className="bg-yellow-50  min-h-screen  ">
       <Header />
       <Outlet />
-    </>
+    </div>
   );
 }
 export default AppLayout;

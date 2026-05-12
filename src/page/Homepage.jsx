@@ -8,10 +8,10 @@ function Homepage() {
   const { selectedCategory } = useSelector((state) => state.flower);
 
   return (
-    <>
+    <div className=" ">
       {selectedCategory === "all" && <Carousel />}
       <ProductList />
-    </>
+    </div>
   );
 }
 

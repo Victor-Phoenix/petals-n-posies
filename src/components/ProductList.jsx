@@ -17,27 +17,27 @@ function ProductList() {
           return (
             <div
               key={index}
-              className="border rounded-lg overflow-hidden shadow-md p-4"
+              className="border rounded-lg overflow-hidden shadow-md p-4 bg-white"
             >
               <Link to={`/product/${item.id}`}>
                 <div className="shrink-0 w-full ">
                   <img
-                    src={item.imageUrl}
+                    src={item.variants?.[0]?.imageUrl}
                     alt={item.name}
-                    className=" object-cover rounded-md"
+                    className="w-96 h-64 object-cover rounded-md hover:transform hover:scale-105"
                   />
                 </div>
+                <div className="mt-4">
+                  <span>
+                    <h3 className="text-lg font-medium">{item.name}</h3>
+                  </span>
+                  <span>
+                    <p className="text-gray-600">
+                      Price: {item.variants?.[0]?.price ?? "N/A"}
+                    </p>
+                  </span>
+                </div>
               </Link>
-              <div className="mt-4">
-                <span>
-                  <h3 className="text-lg font-medium">{item.name}</h3>
-                </span>
-                <span>
-                  <p className="text-gray-600">
-                    Price: {item.variants?.[0]?.price ?? "N/A"}
-                  </p>
-                </span>
-              </div>
             </div>
           );
         })}
