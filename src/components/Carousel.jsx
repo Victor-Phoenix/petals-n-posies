@@ -25,17 +25,32 @@ function Carousel() {
   }, []);
 
   return (
-    <div className=" relative mx-auto w-[90rem] h-[50rem] mt-8     ">
+    <div className=" relative items-center justify-center mx-auto w-[90rem] h-[50rem] mt-8     ">
       <img
         src={bannerImages[currentImageIndex]}
         className="  w-full h-full object-cover rounded-2xl"
       />
-      <div className="inset-0 absolute bg-black/50 rounded-2xl"></div>
-      <div className="absolute bottom-20 right-12">
-        <button className="px-2 border-2 bg-yellow-50 rounded-md">
-          Book Event
+      <div className="inset-0 absolute bg-black/50 rounded-2xl mask-b-from-neutral-100  "></div>
+      {/* mask-b-from-neutral-400 inset */}
+      <div className=" text-center z-10 absolute top-12 left-12 italic font-medium ">
+        <span className="text-[#F4FDD9] text-[8rem]   ">
+          Make your Occassion Flourish
+        </span>
+      </div>
+      <div className="absolute bottom-20  right-12">
+        <button className="text-4xl font-medium p-2 mx-2 border-2 bg-yellow-50 rounded-md hover:bg-amber-100 transition-colors duration-700 hover:cursor-pointer">
+          <span>Book Event</span>
+          <div></div>
         </button>
-        <button className="text-s px-2 border-2 bg-amber-100  rounded-md">
+
+        <button
+          onClick={() => {
+            document
+              .getElementById("product-list")
+              .scrollIntoView({ behavior: "smooth" });
+          }}
+          className="text-4xl font-medium p-2 mx-2 border-2 bg-amber-100  rounded-md hover:bg-amber-200 transition-colors duration-700 hover:cursor-pointer"
+        >
           Shop Now
         </button>
       </div>

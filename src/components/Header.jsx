@@ -11,32 +11,26 @@ function Header() {
     useSelector((state) => state.flower);
   console.log(cart);
   return (
-    <header className=" bg-yellow-300 header flex items-center justify-between    border-gray-200 p-4 h-20">
-      <div className="flex w-40 shrink-0 ">
+    <header className=" bg-yellow-300 header flex items-center justify-between text-2xl font-medium    border-gray-200 p-4 h-20">
+      <div className="flex w-50 shrink-0 ">
         <Link to="/" onClick={() => dispatch(categorySelect("all"))}>
-          HOMEPAGE
-          {/* <img
-              src="src\assets\imgs\Logo.svg"
-              alt="Petals & Posies Logo"
-              className="h-10 "
-            /> */}
+          Petals & Posies
         </Link>
       </div>
       <nav className="flex gap-8 justify-center ">
         <NavBar />
-        <Link to="/weddings-events" className="text-xl ">
-          Weddings & Events
-        </Link>
-        <Link to="/about" className="text-xl">
-          About
-        </Link>
+        <Link to="/weddings-events">Weddings & Events</Link>
+        <Link to="/about">About</Link>
       </nav>
-      <div className="w-40 flex justify-end px-8">
-        <Link to="cart" className="px-8 relative">
-          <ShoppingCart size={24} />
-          <span className="bg-red-500 text-black rounded-full">
-            {cart.length}
-          </span>
+      <div className="relative w-40 flex justify-center px-8">
+        <Link to="cart" className="px-8 ">
+          <ShoppingCart size={32} strokeWidth={2.9} />
+          {/* TODO: CHANGE TO 0 AFTER FIXING THE POSITION  */}
+          {cart.length > -1 && (
+            <span className="bg-red-500 text-black rounded-full font-normal text-sm absolute ">
+              {cart.length}
+            </span>
+          )}
         </Link>
       </div>
     </header>

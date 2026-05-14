@@ -32,7 +32,8 @@ function AdminOrder() {
           <th className="px-4">Total</th>
           <th className="px-4">OrderedItems</th>
         </tr>
-        {orders.map((element) => {  
+        <hr></hr>
+        {orders.map((element) => {
           return (
             <tr className="py-8 border-b border-gray-700">
               <td className="px-4">{element.customerName}</td>

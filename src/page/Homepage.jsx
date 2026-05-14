@@ -10,7 +10,9 @@ function Homepage() {
   return (
     <div className=" ">
       {selectedCategory === "all" && <Carousel />}
-      <ProductList />
+      <div id="product-list">
+        <ProductList />
+      </div>
     </div>
   );
 }

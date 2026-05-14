@@ -29,13 +29,14 @@ function ProductList() {
                 </div>
                 <div className="mt-4">
                   <span>
-                    <h3 className="text-lg font-medium">{item.name}</h3>
+                    <h3 className="text-lg font-medium">
+                      {item.name}{" "}
+                      <p className="text-gray-600">
+                        $ {item.variants?.[0]?.price ?? "N/A"}
+                      </p>
+                    </h3>
                   </span>
-                  <span>
-                    <p className="text-gray-600">
-                      Price: {item.variants?.[0]?.price ?? "N/A"}
-                    </p>
-                  </span>
+                  <span></span>
                 </div>
               </Link>
             </div>
