@@ -25,34 +25,64 @@ function Carousel() {
   }, []);
 
   return (
-    <div className=" relative items-center justify-center mx-auto w-[90rem] h-[50rem] mt-8     ">
-      <img
-        src={bannerImages[currentImageIndex]}
-        className="  w-full h-full object-cover rounded-2xl"
-      />
-      <div className="inset-0 absolute bg-black/50 rounded-2xl mask-b-from-neutral-100  "></div>
-      {/* mask-b-from-neutral-400 inset */}
-      <div className=" text-center z-10 absolute top-12 left-12 italic font-medium ">
-        <span className="text-[#F4FDD9] text-[8rem]   ">
-          Make your Occassion Flourish
-        </span>
-      </div>
-      <div className="absolute bottom-20  right-12">
-        <button className="text-4xl font-medium p-2 mx-2 border-2 bg-yellow-50 rounded-md hover:bg-amber-100 transition-colors duration-700 hover:cursor-pointer">
-          <span>Book Event</span>
-          <div></div>
-        </button>
+    <div className="w-full mt-8 px-8">
+      <div className=" relative   w-full h-[22rem] sm:h-[28rem] md:h-[36rem] lg:h-[44rem] xl:h-[50rem] ">
+        <div className="absolute inset-0">
+          <img
+            src={bannerImages[currentImageIndex]}
+            className="  w-full h-full object-cover rounded-2xl"
+          />
+          <div className="inset-0 absolute bg-black/50 rounded-2xl mask-b-from-neutral-100  "></div>
+        </div>
+        {/* mask-b-from-neutral-400 inset */}
+        <div className="relative px-8 h-full">
+          <div className=" text-center z-10 absolute top-1/2 left-1/2 italic font-medium -translate-x-1/2 -translate-y-1/2">
+            <span className="text-[#F4FDD9] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl       ">
+              Make your Occassion Flourish
+            </span>
+          </div>
+          <div className="absolute bottom-20  right-12">
+            <button
+              className="
+            text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
+            font-medium
+            p-2 sm:p-3 md:p-4
+            mx-2
+            border-2
+            bg-yellow-50
+            rounded-md
+            hover:bg-amber-100
+            transition-colors duration-700
+            hover:cursor-pointer
+            "
+            >
+              <span>Book Event</span>
+              <div></div>
+            </button>
 
-        <button
-          onClick={() => {
-            document
-              .getElementById("product-list")
-              .scrollIntoView({ behavior: "smooth" });
-          }}
-          className="text-4xl font-medium p-2 mx-2 border-2 bg-amber-100  rounded-md hover:bg-amber-200 transition-colors duration-700 hover:cursor-pointer"
-        >
-          Shop Now
-        </button>
+            <button
+              onClick={() => {
+                document
+                  .getElementById("product-list")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
+              className="
+            text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
+            font-medium
+            p-2 sm:p-3 md:p-4
+            mx-2
+            border-2
+            bg-yellow-50
+            rounded-md
+            hover:bg-amber-100
+            transition-colors duration-700
+            hover:cursor-pointer
+            "
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

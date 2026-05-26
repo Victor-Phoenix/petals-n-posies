@@ -4,6 +4,7 @@ import ProductList from "../components/ProductList";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadFlower, loading, rejected } from "../context/flowerSlice";
+import Footer from "../components/Footer";
 
 function AppLayout() {
   const { flowerList, currentFlower, isLoading, selectedCategory, error } =
@@ -30,9 +31,10 @@ function AppLayout() {
   );
 
   return (
-    <div className="bg-yellow-50  min-h-screen  ">
+    <div className="bg-yellow-50  min-h-screen flex flex-col  ">
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }

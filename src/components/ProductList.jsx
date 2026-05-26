@@ -11,20 +11,20 @@ function ProductList() {
           flower.categories.includes(selectedCategory),
         );
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 ">
-      <div className="grid grid-cols-4 gap-6 px-4">
+    <div className="w-full mx-auto px-4 py-8 ">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
         {displayedFlowers.map((item, index) => {
           return (
             <div
               key={index}
-              className="border rounded-lg overflow-hidden shadow-md p-4 bg-white"
+              className="border rounded-lg overflow-hidden shadow-md p-4 bg-white max-w-sm"
             >
               <Link to={`/product/${item.id}`}>
                 <div className="shrink-0 w-full ">
                   <img
                     src={item.variants?.[0]?.imageUrl}
                     alt={item.name}
-                    className="w-96 h-64 object-cover rounded-md hover:transform hover:scale-105"
+                    className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-md hover:transform hover:scale-105"
                   />
                 </div>
                 <div className="mt-4">
