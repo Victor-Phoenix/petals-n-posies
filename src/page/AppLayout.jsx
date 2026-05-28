@@ -33,7 +33,9 @@ function AppLayout() {
   return (
     <div className="bg-yellow-50  min-h-screen flex flex-col  ">
       <Header />
-      <Outlet />
+      <main className="flex flex-1">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

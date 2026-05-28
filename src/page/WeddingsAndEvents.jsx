@@ -1,4 +1,36 @@
+import { useState } from "react";
+
 function WeddingsAndEvents() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    eventDate: "",
+    venue: "",
+    message: "",
+  });
+  const [message, setMessage] = useState("");
+
+  function handleChange(e) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setMessage("Attempting submit");
+      const res = await fetch(`http://localhost:8080/api/email/sendEmail`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log("Error occured");
+      setMessage(err);
+    }
+  }
+
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">Weddings & Events</h1>
@@ -43,35 +75,59 @@ function WeddingsAndEvents() {
         Tell us a little about your event, and we’ll get back to you soon.
       </p>
 
-      <form className="grid grid-cols-1 gap-4 max-w-md">
+      <form
+        className="grid grid-cols-1 gap-4 max-w-md"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <input
           type="text"
           name="name"
+          value={form.name}
           placeholder="Your Name"
           className="border rounded px-3 py-2"
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <input
           type="email"
           name="email"
+          value={form.email}
           placeholder="Your Email"
           className="border rounded px-3 py-2"
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <input
           type="text"
           name="eventDate"
+          value={form.eventDate}
           placeholder="Event Date"
           className="border rounded px-3 py-2"
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <input
           type="text"
           name="venue"
+          value={form.venue}
           placeholder="Event Venue"
           className="border rounded px-3 py-2"
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <textarea
+          type="text"
           name="message"
+          value={form.message}
           placeholder="Tell us about your vision..."
           className="border rounded px-3 py-2 h-28"
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <button
           type="submit"

@@ -51,8 +51,8 @@ function ProductPage({ flowerList }) {
             src={currentFlower.variants?.[selectedIndex]?.imageUrl}
           />
         </div>
-        <div className="border border-4 p-4 mx-4">
-          <div className="border border-2 border-red-500 p-4">
+        <div className=" p-4 mx-4">
+          <div className=" p-4">
             <div className="w-80 px-5">
               <h3 className="font-bold text-2xl">{currentFlower.name}</h3>
               <hr className="mb-2 border-[1px] border-gray-500 " />

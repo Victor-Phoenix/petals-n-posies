@@ -5,13 +5,13 @@ function Footer() {
     <div className="grid grid-cols-3 gap-2 bg-amber-400 p-4 w-full ">
       <div>
         <h2 className="text-2xl font-semibold mt-4">Pages</h2>
-        <Link to="/" className="block hover:underline">
+        <Link to="/" className="block w-fit hover:underline">
           Home
         </Link>
-        <Link to="wedding-events" className="block hover:underline">
+        <Link to="wedding-events" className="block w-fit  hover:underline">
           Weddings & Events
         </Link>
-        <Link to="about" className="block hover:underline">
+        <Link to="about" className="block w-fit  hover:underline">
           About Us
         </Link>
       </div>
