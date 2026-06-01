@@ -28,7 +28,7 @@ function Admin() {
   async function deleteItem(flower) {
     try {
       const res = await fetch(
-        `http://localhost:8080/flower/delete/${flower?.id}`,
+        `${import.meta.env.VITE_API_URL}/flower/delete/${flower?.id}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },

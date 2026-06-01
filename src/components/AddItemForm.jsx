@@ -101,13 +101,16 @@ function AddItemForm({ onClose, initialData }) {
 
     if (flower?.id) {
       try {
-        const res = await fetch("http://localhost:8080/flower/update", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/flower/update`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(sortedFlower),
           },
-          body: JSON.stringify(sortedFlower),
-        });
+        );
         if (!res.ok) {
           throw new Error("Failed to save new Flower");
         }
@@ -122,13 +125,16 @@ function AddItemForm({ onClose, initialData }) {
 
     if (!flower?.id) {
       try {
-        const res = await fetch("http://localhost:8080/flower/addFlower", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/flower/addFlower`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(sortedFlower),
           },
-          body: JSON.stringify(sortedFlower),
-        });
+        );
         if (!res.ok) {
           throw new Error("Failed to save new Flower");
         }

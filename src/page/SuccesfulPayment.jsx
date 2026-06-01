@@ -10,7 +10,7 @@ function SuccesfulPayment() {
       async function fetchOrder() {
         try {
           const response = await fetch(
-            `http://localhost:8080/api/orders/${sessionId}`,
+            `${import.meta.env.VITE_API_URL}/api/orders/${sessionId}`,
           );
           const data = await response.json();
           console.log(data);

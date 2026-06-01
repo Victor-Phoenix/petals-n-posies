@@ -24,6 +24,9 @@ import Checkout from "./page/Checkout";
 import Cart from "./page/Cart";
 import SuccesfulPayment from "./page/SuccesfulPayment";
 import AdminOrder from "./page/AdminOrder";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { LogIn } from "lucide-react";
+import Login from "./page/Login";
 const flowerCategories = [
   "Romance",
   "Birthday",
@@ -52,11 +55,24 @@ const router = createBrowserRouter([
 
   {
     path: "/Admin",
-    element: <Admin />,
+
+    element: (
+      <ProtectedRoute>
+        <Admin />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/AdminOrder",
-    element: <AdminOrder />,
+    element: (
+      <ProtectedRoute>
+        <AdminOrder />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "checkout",

@@ -44,7 +44,7 @@ function ProductPage({ flowerList }) {
   }
   return (
     <>
-      <div className="product-container flex justify-center items-center mt-8 ">
+      <div className="product-container flex flex-1 justify-center items-center mt-8 ">
         <div className="w-1/3 shrink-0">
           <img
             className="w-[128rem] h-96 object-cover"

@@ -30,11 +30,14 @@ function Cart() {
       })),
     };
 
-    const orderResponse = await fetch("http://localhost:8080/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(orderPayload),
-    });
+    const orderResponse = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/orders`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      },
+    );
 
     console.log("Status:", orderResponse.status);
     const order = await orderResponse.json();
@@ -48,7 +51,7 @@ function Cart() {
     }
 
     const payResponse = await fetch(
-      `http://localhost:8080/api/orders/${order.id}/pay`,
+      `${import.meta.env.VITE_API_URL}/api/orders/${order.id}/pay`,
       { method: "POST" },
     );
     const stripeUrl = await payResponse.text();

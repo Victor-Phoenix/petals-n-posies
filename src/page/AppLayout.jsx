@@ -17,7 +17,9 @@ function AppLayout() {
       async function fetchFlower() {
         try {
           dispatch(loading());
-          const res = await fetch(`http://localhost:8080/flower/getAll`);
+          const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/flower/getAll`,
+          );
           const data = await res.json();
           dispatch(loadFlower(data));
         } catch (err) {

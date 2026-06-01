@@ -18,11 +18,14 @@ function WeddingsAndEvents() {
 
     try {
       setMessage("Attempting submit");
-      const res = await fetch(`http://localhost:8080/api/email/sendEmail`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/email/sendEmail`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        },
+      );
       const data = await res.json();
       console.log(data);
     } catch (err) {

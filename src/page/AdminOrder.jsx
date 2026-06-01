@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 
 function AdminOrder() {
   const [orders, setOrders] = useState([]);
+  const [status, setStatus] = useState("");
   useEffect(function () {
     async function getOrders() {
-      const res = await fetch(`http://localhost:8080/api/orders/getAll`);
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/orders/getAll`,
+      );
       console.log("RESPONSE");
       console.log(res);
 
@@ -13,11 +16,43 @@ function AdminOrder() {
       setOrders([...data]);
     }
     getOrders();
+
     console.log("ORDERSS");
 
     console.log(orders);
   }, []);
 
+  async function handleChange(orderId, newStatus) {
+    console.log("ID " + orderId);
+
+    console.log("VALUE " + newStatus);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/orders/setOrderStatus-${orderId}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: newStatus }),
+        },
+      );
+
+      if (!res.ok) {
+        console.error("Failed to update status");
+        return;
+      }
+      setOrders((prev) =>
+        prev.map((order) =>
+          order.id === orderId ? { ...order, orderStatus: newStatus } : order,
+        ),
+      );
+    } catch (err) {
+      console.log(err);
+      setStatus(err);
+    } finally {
+      setStatus("");
+    }
+  }
   return (
     <div className=" mt-4 flex justify-center align-middle">
       <table className="border-spacing-2 border-spacing-y-5">
@@ -31,6 +66,7 @@ function AdminOrder() {
           <th className="px-4">ShippingState</th>
           <th className="px-4">Total</th>
           <th className="px-4">OrderedItems</th>
+          <th className="px-4">Status</th>
         </tr>
         <hr></hr>
         {orders.map((element) => {
@@ -58,6 +94,17 @@ function AdminOrder() {
                     </div>
                   );
                 })}
+              </td>
+              <td className="px-4">
+                <select
+                  value={element.OrderStatus}
+                  // handleChange(element.id, e.target.value)
+                  onChange={(e) => handleChange(element.id, e.target.value)}
+                >
+                  <option>PENDING</option>
+                  <option>OUT_FOR_DELIVERY</option>
+                  <option>DELIVERED</option>
+                </select>
               </td>
             </tr>
           );
