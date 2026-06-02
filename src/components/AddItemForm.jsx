@@ -125,12 +125,14 @@ function AddItemForm({ onClose, initialData }) {
 
     if (!flower?.id) {
       try {
+        const token = localStorage.getItem("token");
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/flower/addFlower`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(sortedFlower),
           },
