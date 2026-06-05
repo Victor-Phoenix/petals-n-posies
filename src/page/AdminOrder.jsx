@@ -28,11 +28,15 @@ function AdminOrder() {
     console.log("VALUE " + newStatus);
 
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/orders/setOrderStatus-${orderId}`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer: ${token}`,
+          },
           body: JSON.stringify({ status: newStatus }),
         },
       );
