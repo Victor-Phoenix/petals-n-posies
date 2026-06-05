@@ -70,19 +70,6 @@ function AddItemForm({ onClose, initialData }) {
   // Look into how this works
   const takenTypes = flower.variants.map((v) => v.type).filter((t) => t !== "");
 
-  // async function deleteItem() {
-  //   try {
-  //     const res = await fetch(
-  //       `http://localhost:8080/flower/delete/${flower?.id}`,
-  //       {
-  //         method: "DELETE",
-  //         headers: { "Content-Type": "application/json" },
-  //       },
-  //     );
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
   async function saveItem() {
     for (const v of flower.variants) {
       if (v.type === "") {
@@ -101,12 +88,14 @@ function AddItemForm({ onClose, initialData }) {
 
     if (flower?.id) {
       try {
+        const token = localStorage.getItem("token");
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/flower/update`,
           {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              Authorization: "Bearer ${token}",
             },
             body: JSON.stringify(sortedFlower),
           },

@@ -3,7 +3,11 @@ import { Link, useParams } from "react-router-dom";
 
 function ProductList() {
   // if (!Array.isArray(flowerList)) return <p>No Products Found</p>;
-  const { flowerList, selectedCategory } = useSelector((state) => state.flower);
+  const { flowerList, selectedCategory, isLoading } = useSelector(
+    (state) => state.flower,
+  );
+
+  if (isLoading) return <p className="text-center mt-8">Loading products...</p>;
   const displayedFlowers =
     selectedCategory === "all"
       ? flowerList
