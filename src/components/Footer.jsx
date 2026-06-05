@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 function Footer() {
   return (
-    <div className="grid grid-cols-3 gap-2 bg-amber-400 p-4 w-full ">
+    <div className="grid grid-cols-1 gap-2 bg-amber-400 p-4 w-full sm:grid-cols-3">
       <div>
         <h2 className="text-2xl font-semibold mt-4">Pages</h2>
         <Link to="/" className="block w-fit hover:underline">
