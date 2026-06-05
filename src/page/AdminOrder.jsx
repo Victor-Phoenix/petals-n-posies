@@ -5,8 +5,15 @@ function AdminOrder() {
   const [status, setStatus] = useState("");
   useEffect(function () {
     async function getOrders() {
+      const token = localStorage.getItem("token");
+
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/orders/getAll`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       console.log("RESPONSE");
       console.log(res);
