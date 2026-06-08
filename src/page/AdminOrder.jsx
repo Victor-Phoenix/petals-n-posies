@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 function AdminOrder() {
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState("");
+  const navigate = useNavigate();
   useEffect(function () {
     async function getOrders() {
       const token = localStorage.getItem("token");

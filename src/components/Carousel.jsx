@@ -30,7 +30,7 @@ function Carousel() {
         <div className="absolute inset-0">
           <img
             src={bannerImages[currentImageIndex]}
-            className="  w-full h-full object-cover rounded-2xl"
+            className="  w-full h-full object-cover rounded-2xl ease-in-out"
           />
           <div className="inset-0 absolute bg-black/50 rounded-2xl mask-b-from-neutral-100  "></div>
         </div>
@@ -59,6 +59,7 @@ function Carousel() {
               <span>Book Event</span>
               <div></div>
             </button>
+
 
             <button
               onClick={() => {
