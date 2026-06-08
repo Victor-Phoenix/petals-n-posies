@@ -9,8 +9,11 @@ https://petals-n-posies.vercel.app
 
 ## Tech Stack
 **Frontend:** React, Redux Toolkit, Tailwind CSS, React Router
+
 **Backend:** Spring Boot, Spring Security, JWT, PostgreSQL
+
 **Payment:** Stripe Checkout + Webhooks
+
 **Deployment:** Vercel (frontend), Railway (backend)
 
 ## Features
