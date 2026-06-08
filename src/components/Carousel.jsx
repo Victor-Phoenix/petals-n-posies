@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 const bannerImages = [
   "https://images.unsplash.com/photo-1589244159943-460088ed5c92?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://images.unsplash.com/photo-1763553113332-800519753e40?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -7,7 +8,7 @@ const bannerImages = [
 
 function Carousel() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => {
@@ -46,20 +47,25 @@ function Carousel() {
               className="
             text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
             font-medium
-            p-2 sm:p-3 md:p-4
+            p-2
+            sm:p-3
+            md:p-4
             mx-2
             border-2
             bg-yellow-50
             rounded-md
             hover:bg-amber-100
-            transition-colors duration-700
+            transition-colors
+            duration-700
             hover:cursor-pointer
             "
+              onClick={() => {
+                navigate("/weddings-events");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
             >
               <span>Book Event</span>
-              <div></div>
             </button>
-
 
             <button
               onClick={() => {
@@ -70,13 +76,16 @@ function Carousel() {
               className="
             text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
             font-medium
-            p-2 sm:p-3 md:p-4
+            p-2
+            sm:p-3
+            md:p-4
             mx-2
             border-2
             bg-yellow-50
             rounded-md
             hover:bg-amber-100
-            transition-colors duration-700
+            transition-colors
+            duration-700
             hover:cursor-pointer
             "
             >

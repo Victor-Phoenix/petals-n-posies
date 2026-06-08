@@ -8,34 +8,31 @@ function AdminOrder() {
   useEffect(function () {
     async function getOrders() {
       const token = localStorage.getItem("token");
-
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/orders/getAll`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      console.log("INSIDE GET ORDER");
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/orders/getAll`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      );
-      console.log("RESPONSE");
-      console.log(res);
-
-      const data = await res.json();
-      console.log(data);
-      setOrders([...data]);
+        );
+        if (res.status === 401) {
+          navigate("/login");
+        }
+        const data = await res.json();
+        setOrders([...data]);
+        console.log("ORDERS");
+        console.log(data);
+      } catch (error) {
+        console.log("FETCH ERROR ", error);
+      }
     }
     getOrders();
-
-    console.log("ORDERSS");
-
-    console.log(orders);
   }, []);
 
   async function handleChange(orderId, newStatus) {
-    console.log("ID " + orderId);
-
-    console.log("VALUE " + newStatus);
-
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
@@ -44,7 +41,7 @@ function AdminOrder() {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer: ${token}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ status: newStatus }),
         },
@@ -92,7 +89,7 @@ function AdminOrder() {
               <td className="px-4">{element.id}</td>
 
               <td className="px-4">{element.shippingCity}</td>
-              <td className="px-4">{element.shippingLine}</td>
+              <td className="px-4">{element.shippingAddress}</td>
               <td className="px-4">{element.shippingPostalCode}</td>
               <td className="px-4">{element.shippingState}</td>
               <td className="px-4">{element.totalPrice}</td>

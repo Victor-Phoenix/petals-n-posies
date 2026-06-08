@@ -6,6 +6,9 @@ function ProtectedRoute({ children }) {
   if (!token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
+  console.log("TOKEN");
+  
+  console.log(token);
   return children;
 }
 

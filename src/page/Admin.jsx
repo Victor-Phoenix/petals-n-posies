@@ -27,11 +27,15 @@ function Admin() {
 
   async function deleteItem(flower) {
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/flower/delete/${flower?.id}`,
         {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
       dispatch(fetchFlowers());
@@ -53,11 +57,13 @@ function Admin() {
           initialData={editFlower}
         />
       )}
-      <div>
-        {!showAddItem && (
-          <button onClick={() => setShowAddItem(true)}>Add Item</button>
-        )}
-        <h1>Admin Page</h1>
+      <div className="my-4">
+        <div className="flex justify-between px-4">
+          <h1 className="font-bold">Admin Page</h1>{" "}
+          {!showAddItem && (
+            <button onClick={() => setShowAddItem(true)}>Add Item</button>
+          )}
+        </div>
         <table className="w-full border-collapse mt-4">
           <thead>
             <tr className="border-b border-gray-600 bg-gray-100 uppercase text-xs tracking-wider text-left">
@@ -125,15 +131,17 @@ function Admin() {
                   </td>
                   <td className="align-middle">
                     <button
+                      className="px-2"
                       onClick={() => {
                         handleEditFlower(flower);
                       }}
                     >
                       Update
                     </button>
+                    |
                     <button
                       type="button"
-                      className="text-red-500 disabled: bg-red-400"
+                      className="px-2"
                       onClick={(e) => {
                         e.preventDefault();
                         deleteItem(flower);

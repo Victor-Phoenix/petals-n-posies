@@ -28,6 +28,8 @@ function WeddingsAndEvents() {
       );
       const data = await res.json();
       console.log(data);
+      setForm({ name: "", email: "", eventDate: "", venue: "", message: "" });
+      alert("Message Sent");
     } catch (err) {
       console.log("Error occured");
       setMessage(err);
