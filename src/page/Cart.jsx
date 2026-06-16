@@ -20,7 +20,10 @@ function Cart() {
   const proceedToPayment = async () => {
     console.log("BUTTON CLICKED"); // add this as first line
     console.log("Cart items:", cart);
-
+    if (cart.length < 1) {
+      alert("Please add a item to cart");
+      return;
+    }
     const orderPayload = {
       deliveryDate: deliveryDate,
       items: cart.map((item) => ({
@@ -47,6 +50,11 @@ function Cart() {
     // STOP if order creation failed
     if (!orderResponse.ok) {
       console.error("Order creation failed:", order);
+      return;
+    }
+
+    if (!order.id) {
+      console.error("Order returned no id:", order);
       return;
     }
 
