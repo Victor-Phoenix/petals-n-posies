@@ -33,10 +33,11 @@ function AdminOrder() {
   }, []);
 
   async function handleChange(orderId, newStatus) {
+    console.log("GRRRRRRRRR");
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/orders/setOrderStatus-${orderId}`,
+        `${import.meta.env.VITE_API_URL}/api/orders/setOrderStatus/${orderId}`,
         {
           method: "PATCH",
           headers: {
@@ -65,6 +66,7 @@ function AdminOrder() {
   }
   return (
     <div className=" mt-4 flex justify-center align-middle">
+      <button>Filter for Today Orders</button>
       <table className="border-spacing-2 border-spacing-y-5">
         <tr>
           <th className="px-4">Name</th>
@@ -107,7 +109,7 @@ function AdminOrder() {
               </td>
               <td className="px-4">
                 <select
-                  value={element.OrderStatus}
+                  value={element.orderStatus}
                   // handleChange(element.id, e.target.value)
                   onChange={(e) => handleChange(element.id, e.target.value)}
                 >
